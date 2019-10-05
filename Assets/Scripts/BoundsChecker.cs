@@ -6,6 +6,11 @@ public class BoundsChecker : MonoBehaviour
 {
     private void OnTriggerExit2D(Collider2D collision)
     {
-        collision.gameObject.transform.position *= -1;
+        //Teleport the object
+        if (collision.gameObject.transform.parent == null
+            || collision.gameObject.transform.parent.GetComponent<Rigidbody2D>() == null)
+        {
+            collision.gameObject.transform.position *= -1;
+        }
     }
 }
