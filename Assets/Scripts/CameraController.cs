@@ -19,10 +19,10 @@ public class CameraController : MonoBehaviour
     void LateUpdate()
     {
         Vector3 pos = transform.position;
-        if (savedVecolity != focusRB2D.velocity)
+        if (false && savedVecolity != focusRB2D.velocity)
         {
             savedVecolity = focusRB2D.velocity;
-            pos = Vector2.MoveTowards(pos, focusTarget.transform.position, Time.deltaTime * focusRB2D.velocity.magnitude * 0.9f);
+            pos = Vector2.MoveTowards(pos, focusTarget.transform.position, Time.deltaTime * focusRB2D.velocity.magnitude * 0.99f);
             
         }
         else
