@@ -65,26 +65,36 @@ public class PlanetController : MonoBehaviour
             bonus++;
         }
         //Add force
-        rb2d.AddForce(
-            new Vector2(horizontal, vertical) * rb2d.mass * moveSpeed * bonus
-            );
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        Size += collision.gameObject.GetComponent<Rigidbody2D>()
-            .mass;
-    }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        Size -= collision.gameObject.GetComponent<Rigidbody2D>()
-            .mass;
+        if (horizontal != 0 || vertical != 0)
+        {
+            rb2d.AddForce(
+                new Vector2(horizontal, vertical) * rb2d.mass * moveSpeed * bonus
+                );
+        }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        Rigidbody2D rb2d = collision.gameObject.GetComponent<Rigidbody2D>();
-        Vector2 pullDir = this.gameObject.transform.position - collision.gameObject.transform.position;
-        rb2d.AddForce(pullDir * gravityStrength);
+        Rigidbody2D collRB2D = collision.gameObject.GetComponent<Rigidbody2D>();
+        if (collRB2D)
+        {
+            Vector2 pullDir = this.gameObject.transform.position - collision.gameObject.transform.position;
+            collRB2D.AddForce(pullDir * gravityStrength);
+        }
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        Rigidbody2D collRB2D = collision.gameObject.GetComponent<Rigidbody2D>();
+        if (collRB2D)
+        {
+            collRB2D.velocity = Vector2.MoveTowards(collRB2D.velocity, rb2d.velocity, Time.fixedDeltaTime);
+            if (Utility.Approximately(collRB2D.velocity, rb2d.velocity))
+            {
+                collision.gameObject.transform.parent = transform;
+                Size += collRB2D.mass;
+                Destroy(collRB2D);
+            }
+        }
     }
 }
