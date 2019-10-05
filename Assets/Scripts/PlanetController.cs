@@ -20,8 +20,22 @@ public class PlanetController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Get inputs
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
-        rb2d.AddForce(new Vector2(horizontal, vertical));
+        //Give bonus when going in the opposite direction
+        float bonus = 1;
+        if (Mathf.Sign(horizontal) != Mathf.Sign(rb2d.velocity.x))
+        {
+            bonus++;
+        }
+        if (Mathf.Sign(vertical) != Mathf.Sign(rb2d.velocity.y))
+        {
+            bonus++;
+        }
+        //Add force
+        rb2d.AddForce(
+            new Vector2(horizontal, vertical) * moveSpeed * bonus
+            );
     }
 }
