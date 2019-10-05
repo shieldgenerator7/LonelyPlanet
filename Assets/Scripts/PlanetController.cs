@@ -16,18 +16,35 @@ public class PlanetController : MonoBehaviour
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
+        Size = size;
     }
 
     public float Range
     {
         get => gravityCollider.radius;
-        set => gravityCollider.radius = value;
+        private set => gravityCollider.radius = value;
     }
 
     public float Strength
     {
         get => gravityStrength;
-        set => gravityStrength = value;
+        private set => gravityStrength = value;
+    }
+
+    [SerializeField]
+    private float size = 1000;
+    public float Size
+    {
+        get => size;
+        private set
+        {
+            size = value;
+            rb2d.mass = size;
+            Strength = size / 200;
+            moveSpeed = size / 300;
+            Range = size / 300;
+            Camera.main.orthographicSize = size / 100;
+        }
     }
 
 
@@ -51,6 +68,17 @@ public class PlanetController : MonoBehaviour
         rb2d.AddForce(
             new Vector2(horizontal, vertical) * rb2d.mass * moveSpeed * bonus
             );
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Size += collision.gameObject.GetComponent<Rigidbody2D>()
+            .mass;
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        Size -= collision.gameObject.GetComponent<Rigidbody2D>()
+            .mass;
     }
 
     private void OnTriggerStay2D(Collider2D collision)
