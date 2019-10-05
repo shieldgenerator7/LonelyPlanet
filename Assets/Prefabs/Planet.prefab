@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5549838203302637332}
   - component: {fileID: -2282922087396738338}
   - component: {fileID: 6076572644192758667}
+  - component: {fileID: 6205372773944165921}
   m_Layer: 0
   m_Name: Planet
   m_TagString: Untagged
@@ -251,4 +252,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 3
   gravityStrength: 5
-  gravityRange: 3
+  gravityCollider: {fileID: 6205372773944165921}
+--- !u!58 &6205372773944165921
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2164012448343075324}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.00000035762787, y: -0.013475537}
+  serializedVersion: 2
+  m_Radius: 3

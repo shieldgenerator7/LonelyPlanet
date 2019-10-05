@@ -7,7 +7,8 @@ public class PlanetController : MonoBehaviour
 
     public float moveSpeed = 3;
     public float gravityStrength = 5;
-    public float gravityRange = 3;
+
+    public CircleCollider2D gravityCollider;
 
     private Rigidbody2D rb2d;
 
@@ -16,6 +17,19 @@ public class PlanetController : MonoBehaviour
     {
         rb2d = GetComponent<Rigidbody2D>();
     }
+
+    public float Range
+    {
+        get => gravityCollider.radius;
+        set => gravityCollider.radius = value;
+    }
+
+    public float Strength
+    {
+        get => gravityStrength;
+        set => gravityStrength = value;
+    }
+
 
     // Update is called once per frame
     void Update()
@@ -35,7 +49,14 @@ public class PlanetController : MonoBehaviour
         }
         //Add force
         rb2d.AddForce(
-            new Vector2(horizontal, vertical) * moveSpeed * bonus
+            new Vector2(horizontal, vertical) * rb2d.mass * moveSpeed * bonus
             );
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        Rigidbody2D rb2d = collision.gameObject.GetComponent<Rigidbody2D>();
+        Vector2 pullDir = this.gameObject.transform.position - collision.gameObject.transform.position;
+        rb2d.AddForce(pullDir * gravityStrength);
     }
 }
