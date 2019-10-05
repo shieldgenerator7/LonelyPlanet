@@ -44,11 +44,12 @@ public class PlanetController : MonoBehaviour
         private set
         {
             size = value;
+            float shrunkSize = size - 900;
             rb2d.mass = size;
-            Strength = size / 200;
-            moveSpeed = size / 300;
-            Range = size / 300;
-            Camera.main.orthographicSize = size / 100;
+            Strength = shrunkSize / 20;
+            moveSpeed = shrunkSize / 30;
+            Range = shrunkSize / 30;
+            Camera.main.orthographicSize = Range * 1.5f;
         }
     }
 
