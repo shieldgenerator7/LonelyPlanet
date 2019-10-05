@@ -8,7 +8,8 @@ public class PlanetController : MonoBehaviour
     public float moveSpeed = 3;
     public float gravityStrength = 5;
 
-    public CircleCollider2D gravityCollider;
+    public GameObject gravityColliderObject;
+    private CircleCollider2D gravityCollider;
 
     private Rigidbody2D rb2d;
 
@@ -16,13 +17,17 @@ public class PlanetController : MonoBehaviour
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
+        gravityCollider = gravityColliderObject.GetComponent<CircleCollider2D>();
         Size = size;
     }
 
     public float Range
     {
-        get => gravityCollider.radius;
-        private set => gravityCollider.radius = value;
+        get => gravityColliderObject.transform.localScale
+            .magnitude / 2;
+        private set =>
+            gravityColliderObject.transform.localScale =
+                Vector2.one * value * 2;
     }
 
     public float Strength
