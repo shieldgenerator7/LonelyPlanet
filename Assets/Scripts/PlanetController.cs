@@ -94,7 +94,11 @@ public class PlanetController : MonoBehaviour
         Rigidbody2D collRB2D = collision.gameObject.GetComponent<Rigidbody2D>();
         if (collRB2D)
         {
-            collRB2D.velocity = Vector2.MoveTowards(collRB2D.velocity, rb2d.velocity, Time.fixedDeltaTime);
+            collRB2D.velocity = Vector2.MoveTowards(
+                collRB2D.velocity,
+                rb2d.velocity,
+                Time.fixedDeltaTime * Strength * 0.25f
+                );
             if (Utility.Approximately(collRB2D.velocity, rb2d.velocity))
             {
                 collision.gameObject.transform.parent = transform;
