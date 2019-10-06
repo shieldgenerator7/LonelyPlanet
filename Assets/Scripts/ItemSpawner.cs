@@ -5,11 +5,14 @@ using UnityEngine;
 public class ItemSpawner : MonoBehaviour
 {
     public float spawnDelay = 1;
+    public int maxSpawnLimit = 0;
     public float maxRadiusFromCenter = 100;
 
     public List<GameObject> spawnPrefabs;
 
     private float lastSpawnTime = 0;
+    [SerializeField]
+    private int itemsSpawned = 0;
 
     // Update is called once per frame
     void Update()
@@ -30,6 +33,12 @@ public class ItemSpawner : MonoBehaviour
             }
             newThing.transform.position = pos;
             newThing.transform.parent = transform;
+            //
+            itemsSpawned++;
+        }
+        if (maxSpawnLimit > 0 && itemsSpawned >= maxSpawnLimit)
+        {
+            Destroy(this);
         }
     }
 }

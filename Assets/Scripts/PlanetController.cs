@@ -79,13 +79,34 @@ public class PlanetController : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        MoonController mc = collision.gameObject.GetComponent<MoonController>();
+        if (mc)
+        {
+            mc.Planet = this;
+            mc.transform.parent = transform;
+        }
+    }
+
     private void OnTriggerStay2D(Collider2D collision)
     {
         Rigidbody2D collRB2D = collision.gameObject.GetComponent<Rigidbody2D>();
-        if (collRB2D)
+        if (collRB2D && !collision.gameObject.GetComponent<MoonController>())
         {
             Vector2 pullDir = this.gameObject.transform.position - collision.gameObject.transform.position;
             collRB2D.AddForce(pullDir * gravityStrength);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Asteroid"))
+        {
+            Rigidbody2D collRB2D = collision.gameObject.GetComponent<Rigidbody2D>();
+            collision.gameObject.transform.parent = transform;
+            Size += collRB2D.mass;
+            Destroy(collRB2D);
         }
     }
 
