@@ -7,6 +7,7 @@ public class ItemSpawner : MonoBehaviour
     public float spawnDelay = 1;
     public int maxSpawnLimit = 0;
     public float maxRadiusFromCenter = 100;
+    public bool spawnCircular = true;//rectangle if false
 
     public List<GameObject> spawnPrefabs;
 
@@ -27,9 +28,12 @@ public class ItemSpawner : MonoBehaviour
             Vector2 pos = Vector2.zero;
             pos.x = Random.Range(-maxRadiusFromCenter, maxRadiusFromCenter);
             pos.y = Random.Range(-maxRadiusFromCenter, maxRadiusFromCenter);
-            if (Vector2.Distance(pos, Vector2.zero) > maxRadiusFromCenter)
+            if (spawnCircular)
             {
-                pos = pos.normalized * maxRadiusFromCenter;
+                if (Vector2.Distance(pos, Vector2.zero) > maxRadiusFromCenter)
+                {
+                    pos = pos.normalized * maxRadiusFromCenter;
+                }
             }
             newThing.transform.position = pos;
             newThing.transform.parent = transform;

@@ -365,8 +365,8 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!58 &1575394791
-CircleCollider2D:
+--- !u!61 &1575394791
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -379,8 +379,18 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Radius: 100
+  m_Size: {x: 200, y: 200}
+  m_EdgeRadius: 0
 --- !u!4 &1575394792
 Transform:
   m_ObjectHideFlags: 0
@@ -407,6 +417,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f406bc4ad98a19540887146703bec7d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  circularBounds: 0
 --- !u!1 &1653148481
 GameObject:
   m_ObjectHideFlags: 0
@@ -458,6 +469,7 @@ MonoBehaviour:
   spawnDelay: 5
   maxSpawnLimit: 0
   maxRadiusFromCenter: 75
+  spawnCircular: 0
   spawnPrefabs:
   - {fileID: 7340711610184056803, guid: d61a300ecd4f4c8499b12ce7f9fa5442, type: 3}
   - {fileID: 4192461446933157231, guid: 96c7309b279a62841a5e40bb65af8e8b, type: 3}
@@ -481,6 +493,7 @@ MonoBehaviour:
   spawnDelay: 0.75
   maxSpawnLimit: 0
   maxRadiusFromCenter: 100
+  spawnCircular: 0
   spawnPrefabs:
   - {fileID: 7340711610184056803, guid: 92459a14bc1c0a940a7db42da9bd64eb, type: 3}
   - {fileID: 4192461446933157231, guid: 1ea31e468a10c4047be5f04539d14e33, type: 3}
@@ -506,6 +519,7 @@ MonoBehaviour:
   spawnDelay: 0.1
   maxSpawnLimit: 50
   maxRadiusFromCenter: 50
+  spawnCircular: 1
   spawnPrefabs:
   - {fileID: 7340711610184056803, guid: 92459a14bc1c0a940a7db42da9bd64eb, type: 3}
   - {fileID: 4192461446933157231, guid: 1ea31e468a10c4047be5f04539d14e33, type: 3}
