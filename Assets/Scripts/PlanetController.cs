@@ -7,6 +7,7 @@ public class PlanetController : MonoBehaviour
 
     public float moveSpeed = 3;
     public float gravityStrength = 5;
+    public float timeToGlue = 3;
 
     public GameObject gravityColliderObject;
     private CircleCollider2D gravityCollider;
@@ -101,12 +102,12 @@ public class PlanetController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Asteroid"))
+        Rigidbody2D collRB2D = collision.gameObject.GetComponent<Rigidbody2D>();
+        if (collRB2D)
         {
-            Rigidbody2D collRB2D = collision.gameObject.GetComponent<Rigidbody2D>();
-            collision.gameObject.transform.parent = transform;
-            Size += collRB2D.mass;
-            Destroy(collRB2D);
+            Vector3 pos = collRB2D.transform.position;
+            pos.z = 0;
+            collRB2D.transform.position = pos;
         }
     }
 
@@ -115,16 +116,18 @@ public class PlanetController : MonoBehaviour
         Rigidbody2D collRB2D = collision.gameObject.GetComponent<Rigidbody2D>();
         if (collRB2D)
         {
-            collRB2D.velocity = Vector2.MoveTowards(
-                collRB2D.velocity,
-                rb2d.velocity,
-                Time.fixedDeltaTime * Strength * 0.25f
-                );
-            if (Utility.Approximately(collRB2D.velocity, rb2d.velocity))
+            if (Utility.Approximately(collRB2D.velocity, rb2d.velocity)
+                || collRB2D.transform.position.z >= timeToGlue)
             {
                 collision.gameObject.transform.parent = transform;
                 Size += collRB2D.mass;
                 Destroy(collRB2D);
+            }
+            else
+            {
+                Vector3 pos = collRB2D.transform.position;
+                pos.z += Time.fixedDeltaTime;
+                collRB2D.transform.position = pos;
             }
         }
     }
