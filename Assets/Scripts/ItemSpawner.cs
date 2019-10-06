@@ -10,7 +10,7 @@ public class ItemSpawner : MonoBehaviour
     public bool spawnCircular = true;//rectangle if false
 
     public List<GameObject> spawnPrefabs;
-    public List<Color> possibleColors;
+    public ColorPalette colorPalette;
 
     private float lastSpawnTime = 0;
     [SerializeField]
@@ -39,7 +39,7 @@ public class ItemSpawner : MonoBehaviour
             newThing.transform.position = pos;
             newThing.transform.parent = transform;
             newThing.GetComponent<SpriteRenderer>().color =
-                possibleColors[Random.Range(0, possibleColors.Count)];
+                colorPalette.RandomColor;
             //
             itemsSpawned++;
         }
