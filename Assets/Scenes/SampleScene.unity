@@ -784,20 +784,5 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2164012448343075326, guid: e025cd97e62bdd44aaeb0a1b2c3f8c81,
-        type: 3}
-      propertyPath: m_ShapeTexture
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6076572644192758667, guid: e025cd97e62bdd44aaeb0a1b2c3f8c81,
-        type: 3}
-      propertyPath: timeToGlue
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5549838203302637332, guid: e025cd97e62bdd44aaeb0a1b2c3f8c81,
-        type: 3}
-      propertyPath: m_Constraints
-      value: 4
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e025cd97e62bdd44aaeb0a1b2c3f8c81, type: 3}
