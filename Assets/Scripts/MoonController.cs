@@ -43,7 +43,7 @@ public class MoonController : MonoBehaviour
                 moveSpeed
                 );
             Vector2 outDir = transform.position - planet.transform.position;
-            if (outDir.magnitude > planet.Range)
+            if (outDir.magnitude != planet.Range)
             {
                 transform.position =
                     (Vector2)planet.transform.position
