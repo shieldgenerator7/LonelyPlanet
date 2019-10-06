@@ -55,17 +55,10 @@ public class MoonController : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         GameObject collidingObject = collision.collider.gameObject;
-        if (collidingObject.GetComponent<MoonController>())
+        if (collidingObject.CompareTag("Asteroid"))
         {
-            Planet = null;
-        }
-        else
-        {
-            if (collidingObject.CompareTag("Asteroid"))
-            {
-                Destroy(gameObject);
-                Destroy(collidingObject);
-            }
+            Destroy(gameObject);
+            Destroy(collidingObject);
         }
     }
 }
