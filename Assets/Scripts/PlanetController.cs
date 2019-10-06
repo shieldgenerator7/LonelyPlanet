@@ -24,8 +24,7 @@ public class PlanetController : MonoBehaviour
 
     public float Range
     {
-        get => gravityColliderObject.transform.localScale
-            .magnitude / 2;
+        get => gravityColliderObject.transform.localScale.x / 2;
         private set =>
             gravityColliderObject.transform.localScale =
                 Vector2.one * value * 2;
@@ -50,7 +49,7 @@ public class PlanetController : MonoBehaviour
             Strength = shrunkSize / 20;
             moveSpeed = shrunkSize / 30;
             Range = shrunkSize / 30;
-            Camera.main.orthographicSize = Range * 1.5f;
+            Camera.main.orthographicSize = Range * 2.5f;
         }
     }
 
@@ -119,9 +118,18 @@ public class PlanetController : MonoBehaviour
             if (Utility.Approximately(collRB2D.velocity, rb2d.velocity)
                 || collRB2D.transform.position.z >= timeToGlue)
             {
+                //Glue the object
                 collision.gameObject.transform.parent = transform;
                 Size += collRB2D.mass;
                 Destroy(collRB2D);
+                if (!isInside(collision.gameObject))
+                {
+                    GameManager.gameOver();
+                    collision.gameObject.GetComponent<SpriteRenderer>()
+                        .color = Color.red;
+                    Destroy(rb2d);
+                    Destroy(this);
+                }
             }
             else
             {
@@ -130,5 +138,22 @@ public class PlanetController : MonoBehaviour
                 collRB2D.transform.position = pos;
             }
         }
+    }
+
+    /// <summary>
+    /// Checks to see if the new added piece is completely inside the range
+    /// (assumes circlular range and circular new piece shape)
+    /// </summary>
+    /// <param name="newPiece"></param>
+    /// <returns>True for inside, False for outside</returns>
+    bool isInside(GameObject newPiece)
+    {
+        float radius = newPiece.GetComponent<CircleCollider2D>().radius;
+        Vector2 outDir = newPiece.transform.position - transform.position;
+        if (outDir.magnitude + radius <= Range)
+        {
+            return true;//it is inside
+        }
+        return false;//it is outside
     }
 }
