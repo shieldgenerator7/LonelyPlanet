@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ColorPalette : MonoBehaviour
+[CreateAssetMenu(fileName = "Color Palette", menuName = "Color Palette", order = 0)]
+public class ColorPalette : ScriptableObject
 {
     public List<Color> possibleColors;
 
