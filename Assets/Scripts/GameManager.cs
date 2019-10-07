@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
         IN_PROGRESS,
         GAME_OVER
     }
-    public GameState gameState { get; private set; } = GameState.NOT_STARTED;
+    public GameState gameState = GameState.NOT_STARTED;
 
     public bool AnyInput
     {
@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
     }
 
     public static GameManager instance { get; private set; }
+    public static bool playAutomatically = false;
 
     // Start is called before the first frame update
     void Start()
@@ -45,6 +46,11 @@ public class GameManager : MonoBehaviour
             Destroy(instance.gameObject);
         }
         instance = this;
+        if (playAutomatically)
+        {
+            playAutomatically = false;
+            playGame();
+        }
     }
 
     // Update is called once per frame
@@ -63,18 +69,18 @@ public class GameManager : MonoBehaviour
             FindObjectOfType<PlanetController>().enabled = true;
             gameState = GameState.IN_PROGRESS;
         }
-        else if (gameState == GameState.GAME_OVER)
-        {
-            if (gameOverStartTime > 0
-                && Time.time > gameOverStartTime + gameOverHangTimeDuration)
-            {
-                if (AnyInput)
-                {
-                    //Restart the game
-                    resetGame();
-                }
-            }
-        }
+        //else if (gameState == GameState.GAME_OVER)
+        //{
+        //    if (gameOverStartTime > 0
+        //        && Time.time > gameOverStartTime + gameOverHangTimeDuration)
+        //    {
+        //        if (AnyInput)
+        //        {
+        //            //Restart the game
+        //            resetGame();
+        //        }
+        //    }
+        //}
 
         //Open Menu
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -113,6 +119,7 @@ public class GameManager : MonoBehaviour
     {
         //Restart the game
         SceneManager.LoadScene("PlayScene");
+        playAutomatically = true;
     }
 
     public static bool menuLoaded()
