@@ -54,7 +54,7 @@ public class GameManager : MonoBehaviour
         {
             FindObjectOfType<PlanetController>().enabled = false;
         }
-        if (gameState == GameState.STARTING)
+        else if (gameState == GameState.STARTING)
         {
             foreach (GameObject go in hiddenUntilStart)
             {
@@ -75,6 +75,19 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
+
+        //Open Menu
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (menuLoaded())
+            {
+                FindObjectOfType<MenuManager>().playGame();
+            }
+            else
+            {
+                loadMenu();
+            }
+        }
     }
 
     public static void playGame()
@@ -83,19 +96,35 @@ public class GameManager : MonoBehaviour
         {
             resetGame();
         }
-        instance.gameState = GameState.STARTING;
+        else if (instance.gameState == GameState.NOT_STARTED)
+        {
+            instance.gameState = GameState.STARTING;
+        }
     }
 
     public static void gameOver()
     {
         instance.gameOverStartTime = Time.time;
         instance.gameState = GameState.GAME_OVER;
-        SceneManager.LoadSceneAsync(0, LoadSceneMode.Additive);
+        loadMenu();
     }
 
     public static void resetGame()
     {
         //Restart the game
         SceneManager.LoadScene("PlayScene");
+    }
+
+    public static bool menuLoaded()
+    {
+        return SceneManager.GetSceneByBuildIndex(0).isLoaded;
+    }
+
+    public static void loadMenu()
+    {
+        if (!menuLoaded())
+        {
+            SceneManager.LoadSceneAsync(0, LoadSceneMode.Additive);
+        }
     }
 }

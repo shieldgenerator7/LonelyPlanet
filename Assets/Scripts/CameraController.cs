@@ -13,7 +13,8 @@ public class CameraController : MonoBehaviour
     public Vector3 ScreenShakeVector
     {
         get => (screenShakeStartTime > 0
-            && Time.time < screenShakeStartTime + screenShakeDuration)
+            && Time.time < screenShakeStartTime + screenShakeDuration
+            && !GameManager.menuLoaded())
             ? screenShakeVector
             : Vector3.zero;
         set

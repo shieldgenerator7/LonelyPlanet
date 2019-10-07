@@ -23,16 +23,27 @@ public class MenuManager : MonoBehaviour
         {
             SceneManager.LoadScene("PlayScene", LoadSceneMode.Additive);
         }
+        pauseGame(true);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
+    }
+
+    public void pauseGame(bool pause)
+    {
+        Time.timeScale = (pause) ? 0 : 1;
+        foreach (MoonController moon in FindObjectsOfType<MoonController>())
+        {
+            moon.enabled = !pause;
+        }
     }
 
     public void playGame()
     {
+        pauseGame(false);
         GameManager.playGame();
         SceneManager.UnloadSceneAsync(0);
     }
