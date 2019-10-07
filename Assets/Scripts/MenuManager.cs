@@ -36,4 +36,9 @@ public class MenuManager : MonoBehaviour
         GameManager.playGame();
         SceneManager.UnloadSceneAsync(0);
     }
+
+    public void exitGame()
+    {
+        Application.Quit();
+    }
 }
