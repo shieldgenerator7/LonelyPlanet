@@ -57,8 +57,29 @@ public class MoonController : MonoBehaviour
         GameObject collidingObject = collision.collider.gameObject;
         if (collidingObject.CompareTag("Asteroid"))
         {
-            Destroy(gameObject);
-            Destroy(collidingObject);
+            float moonSize = transform.localScale.x;
+            float asteroidSize = collidingObject.transform.localScale.x;
+            transform.localScale =
+                transform.localScale.adjustVector(-asteroidSize);
+            collidingObject.transform.localScale =
+                collidingObject.transform.localScale.adjustVector(-moonSize);
+            if (transform.localScale.x <= 0)
+            {
+                Destroy(gameObject);
+            }
+            if (collidingObject.transform.localScale.x <= 0)
+            {
+                Destroy(collidingObject);
+            }
+            else
+            {
+                Rigidbody2D collRB2D = collidingObject.GetComponent<Rigidbody2D>();
+                if (!collRB2D)
+                {
+                    collRB2D = collidingObject.AddComponent<Rigidbody2D>();
+                    collRB2D.mass = 0.75f * collidingObject.transform.localScale.x;
+                }
+            }
         }
     }
 }

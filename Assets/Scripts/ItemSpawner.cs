@@ -11,6 +11,7 @@ public class ItemSpawner : MonoBehaviour
 
     public List<GameObject> spawnPrefabs;
     public ColorPalette colorPalette;
+    public float sizeMultiplier = 1;
 
     private float lastSpawnTime = 0;
     [SerializeField]
@@ -38,8 +39,12 @@ public class ItemSpawner : MonoBehaviour
             }
             newThing.transform.position = pos;
             newThing.transform.parent = transform;
+            //Color
             newThing.GetComponent<SpriteRenderer>().color =
                 colorPalette.RandomColor;
+            //Size
+            newThing.transform.localScale *= sizeMultiplier;
+            newThing.GetComponent<Rigidbody2D>().mass *= sizeMultiplier;
             //
             itemsSpawned++;
         }

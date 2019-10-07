@@ -9,6 +9,10 @@ public class PlanetController : MonoBehaviour
     public float gravityStrength = 5;
     public float timeToGlue = 3;
 
+    [Header("Size Factors")]
+    public float rangeDivider = 30;
+
+    [Header("Components")]
     public GameObject gravityColliderObject;
     private CircleCollider2D gravityCollider;
 
@@ -48,7 +52,7 @@ public class PlanetController : MonoBehaviour
             rb2d.mass = size;
             Strength = shrunkSize / 20;
             moveSpeed = shrunkSize / 30;
-            Range = shrunkSize / 30;
+            Range = shrunkSize / rangeDivider;
             Camera.main.orthographicSize = Range * 2.5f;
         }
     }
