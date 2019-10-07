@@ -26,7 +26,16 @@ public class GameManager : MonoBehaviour
         if (gameOverStartTime > 0
             && Time.time > gameOverStartTime + gameOverHangTimeDuration)
         {
-            SceneManager.LoadScene(0);
+            float horizontal = Input.GetAxis("Horizontal");
+            float vertical = Input.GetAxis("Vertical");
+            int touchCount = Input.touchCount;
+            bool mouseDown = Input.GetMouseButton(0);
+            if (horizontal != 0 || vertical != 0
+                || touchCount > 0 || mouseDown)
+            {
+                //Restart the game
+                SceneManager.LoadScene(0);
+            }
         }
     }
 
