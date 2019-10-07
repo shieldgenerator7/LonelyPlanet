@@ -657,6 +657,7 @@ MonoBehaviour:
   - {fileID: 6596616424804694360, guid: 24c1efff380d36e42989113eae435a28, type: 3}
   colorPalette: {fileID: 11400000, guid: 1c3ecdd02d18cf8488b3ba846b25b3aa, type: 2}
   spritePalette: {fileID: 11400000, guid: e53212fb700a326499e86f3b53aac2ad, type: 2}
+  initialSpeed: 1
   sizeMultiplier: 1.5
   itemsSpawned: 0
 --- !u!114 &863737658
@@ -679,6 +680,7 @@ MonoBehaviour:
   - {fileID: 6596616424804694360, guid: 24c1efff380d36e42989113eae435a28, type: 3}
   colorPalette: {fileID: 11400000, guid: 1c3ecdd02d18cf8488b3ba846b25b3aa, type: 2}
   spritePalette: {fileID: 11400000, guid: e53212fb700a326499e86f3b53aac2ad, type: 2}
+  initialSpeed: 1
   sizeMultiplier: 1.5
   itemsSpawned: 0
 --- !u!114 &863737659
@@ -701,6 +703,7 @@ MonoBehaviour:
   - {fileID: 7340711610184056803, guid: d61a300ecd4f4c8499b12ce7f9fa5442, type: 3}
   colorPalette: {fileID: 11400000, guid: 97e2312e071fbc44891f355f2c0c700a, type: 2}
   spritePalette: {fileID: 11400000, guid: 90ae8d37d5aa56c4d95de9ccbe8624af, type: 2}
+  initialSpeed: 1
   sizeMultiplier: 1.5
   itemsSpawned: 0
 --- !u!4 &863737660
@@ -806,6 +809,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1575394792}
+  - component: {fileID: 1575394796}
   - component: {fileID: 1575394791}
   - component: {fileID: 1575394793}
   - component: {fileID: 1575394795}
@@ -833,10 +837,10 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 199.99998, y: 199.99998}
+    newSize: {x: 21.6, y: 21.6}
+    adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
@@ -5600,6 +5604,55 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!212 &1575394796
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1575394790}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: -991275165
+  m_SortingLayer: -1
+  m_SortingOrder: -100
+  m_Sprite: {fileID: 21300000, guid: fb3374f9d7a8c694faeefbf1393ad1e4, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 21.6, y: 21.6}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &1653148481
 GameObject:
   m_ObjectHideFlags: 0
@@ -5656,6 +5709,7 @@ MonoBehaviour:
   - {fileID: 7340711610184056803, guid: d61a300ecd4f4c8499b12ce7f9fa5442, type: 3}
   colorPalette: {fileID: 11400000, guid: 97e2312e071fbc44891f355f2c0c700a, type: 2}
   spritePalette: {fileID: 11400000, guid: 90ae8d37d5aa56c4d95de9ccbe8624af, type: 2}
+  initialSpeed: 1
   sizeMultiplier: 1
   itemsSpawned: 0
 --- !u!114 &1653148484
@@ -5678,6 +5732,7 @@ MonoBehaviour:
   - {fileID: 6596616424804694360, guid: 24c1efff380d36e42989113eae435a28, type: 3}
   colorPalette: {fileID: 11400000, guid: 1c3ecdd02d18cf8488b3ba846b25b3aa, type: 2}
   spritePalette: {fileID: 11400000, guid: e53212fb700a326499e86f3b53aac2ad, type: 2}
+  initialSpeed: 1
   sizeMultiplier: 1
   itemsSpawned: 0
 --- !u!114 &1653148485
@@ -5700,6 +5755,7 @@ MonoBehaviour:
   - {fileID: 6596616424804694360, guid: 24c1efff380d36e42989113eae435a28, type: 3}
   colorPalette: {fileID: 11400000, guid: 1c3ecdd02d18cf8488b3ba846b25b3aa, type: 2}
   spritePalette: {fileID: 11400000, guid: e53212fb700a326499e86f3b53aac2ad, type: 2}
+  initialSpeed: 1
   sizeMultiplier: 1
   itemsSpawned: 0
 --- !u!4 &1826872327
