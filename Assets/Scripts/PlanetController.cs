@@ -102,12 +102,14 @@ public class PlanetController : MonoBehaviour
         MoonController mc = collision.gameObject.GetComponent<MoonController>();
         if (mc)
         {
-            mc.Planet = this;
-            mc.transform.parent = transform;
-            mc.onDestroyed += removeMoon;
             if (!moons.Contains(mc))
             {
                 moons.Add(mc);
+                mc.Planet = this;
+                mc.transform.parent = transform;
+                mc.onDestroyed += removeMoon;
+                addScore(mc.gameObject, false);
+                mc.flashMoon();
             }
         }
     }
@@ -179,16 +181,7 @@ public class PlanetController : MonoBehaviour
         asteroid.transform.parent = transform;
         Size += collRB2D.mass;
         //Score
-        float scoreAddend = collRB2D.mass * 100;
-        float multiplier = 1;
-        foreach (MoonController moon in moons)
-        {
-            multiplier += moon.transform.localScale.x;
-            moon.flashMoon();
-        }
-        scoreAddend *= multiplier;
-        Score += Mathf.CeilToInt(scoreAddend);
-        scoreText.color = collSR.color;
+        addScore(asteroid);
         //Finalize asteroid
         Destroy(collRB2D);
         //Detect game over condition
@@ -204,5 +197,24 @@ public class PlanetController : MonoBehaviour
     private void removeMoon(MoonController moon)
     {
         moons.Remove(moon);
+    }
+
+    private void addScore(GameObject rock, bool applyMoonBonus = true)
+    {
+        Rigidbody2D rockRB2D = rock.GetComponent<Rigidbody2D>();
+        SpriteRenderer rockSR = rock.GetComponent<SpriteRenderer>();
+        float scoreAddend = rockRB2D.mass * 100;
+        if (applyMoonBonus)
+        {
+            float multiplier = 1;
+            foreach (MoonController moon in moons)
+            {
+                multiplier += moon.transform.localScale.x;
+                moon.flashMoon();
+            }
+            scoreAddend *= multiplier;
+        }
+        Score += Mathf.CeilToInt(scoreAddend);
+        scoreText.color = rockSR.color;
     }
 }
