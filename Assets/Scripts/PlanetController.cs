@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PlanetController : MonoBehaviour
@@ -15,6 +16,7 @@ public class PlanetController : MonoBehaviour
     [Header("Components")]
     public GameObject gravityColliderObject;
     private CircleCollider2D gravityCollider;
+    public TextMeshProUGUI scoreText;
 
     private Rigidbody2D rb2d;
 
@@ -24,6 +26,17 @@ public class PlanetController : MonoBehaviour
         rb2d = GetComponent<Rigidbody2D>();
         gravityCollider = gravityColliderObject.GetComponent<CircleCollider2D>();
         Size = size;
+    }
+
+    private int score = 0;
+    public int Score
+    {
+        get => score;
+        private set
+        {
+            score = Mathf.CeilToInt(value);
+            scoreText.text = "" + score;
+        }
     }
 
     public float Range
@@ -125,6 +138,7 @@ public class PlanetController : MonoBehaviour
                 //Glue the object
                 collision.gameObject.transform.parent = transform;
                 Size += collRB2D.mass;
+                Score += (int)(collRB2D.mass * 100);
                 Destroy(collRB2D);
                 if (!isInside(collision.gameObject))
                 {
