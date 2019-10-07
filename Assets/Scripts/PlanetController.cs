@@ -17,6 +17,7 @@ public class PlanetController : MonoBehaviour
     public GameObject gravityColliderObject;
     private CircleCollider2D gravityCollider;
     public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI multiplierText;
 
     private Rigidbody2D rb2d;
     private List<MoonController> moons = new List<MoonController>();
@@ -37,6 +38,19 @@ public class PlanetController : MonoBehaviour
         {
             score = Mathf.CeilToInt(value);
             scoreText.text = "" + score;
+        }
+    }
+
+    private float multiplier = 0;
+    public float Multiplier
+    {
+        get => multiplier;
+        private set
+        {
+            multiplier = value;
+            multiplierText.text = "x" + multiplier;
+            multiplierText.transform.parent.gameObject
+                .SetActive(multiplier > 1);
         }
     }
 
@@ -124,6 +138,13 @@ public class PlanetController : MonoBehaviour
                 mc.onHit += moonHit;
                 addScore(mc.gameObject, false);
                 mc.flashMoon();
+                //Recalculate multiplier
+                float multiplier = 1;
+                foreach (MoonController moon in moons)
+                {
+                    multiplier += moon.transform.localScale.x;
+                }
+                Multiplier = multiplier;
             }
         }
     }
@@ -230,6 +251,14 @@ public class PlanetController : MonoBehaviour
     {
         moonHit(moon);
         moons.Remove(moon);
+        //Recalculate multiplier
+        float multiplier = 1;
+        foreach (MoonController mc in moons)
+        {
+            multiplier += mc.transform.localScale.x;
+            mc.flashMoon();
+        }
+        Multiplier = multiplier;
     }
 
     private void addScore(GameObject rock, bool applyMoonBonus = true)
@@ -239,13 +268,11 @@ public class PlanetController : MonoBehaviour
         float scoreAddend = rockRB2D.mass * 100;
         if (applyMoonBonus)
         {
-            float multiplier = 1;
             foreach (MoonController moon in moons)
             {
-                multiplier += moon.transform.localScale.x;
                 moon.flashMoon();
             }
-            scoreAddend *= multiplier;
+            scoreAddend *= Multiplier;
         }
         Score += Mathf.CeilToInt(scoreAddend);
         scoreText.color = rockSR.color;
