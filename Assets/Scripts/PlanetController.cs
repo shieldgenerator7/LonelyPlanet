@@ -166,7 +166,9 @@ public class PlanetController : MonoBehaviour
     /// <returns>True for inside, False for outside</returns>
     bool isInside(GameObject newPiece)
     {
-        float radius = newPiece.GetComponent<CircleCollider2D>().radius;
+        float radius = 
+            newPiece.GetComponent<CircleCollider2D>().radius
+            * newPiece.transform.localScale.x;
         Vector2 outDir = newPiece.transform.position - transform.position;
         if (outDir.magnitude + radius <= Range)
         {
