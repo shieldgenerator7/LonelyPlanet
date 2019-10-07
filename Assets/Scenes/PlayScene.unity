@@ -150,6 +150,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameOverHangTimeDuration: 2
+  hiddenUntilStart:
+  - {fileID: 1653148481}
+  - {fileID: 863737654}
+  - {fileID: 457158084}
 --- !u!4 &233178067
 Transform:
   m_ObjectHideFlags: 0
@@ -354,7 +358,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &457158085
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -637,7 +641,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &863737657
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5672,7 +5676,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1653148482
 Transform:
   m_ObjectHideFlags: 0
@@ -5926,9 +5930,10 @@ PrefabInstance:
       propertyPath: scoreText
       value: 
       objectReference: {fileID: 360066115}
-    - target: {fileID: 1732258330, guid: e025cd97e62bdd44aaeb0a1b2c3f8c81, type: 3}
-      propertyPath: m_SortingOrder
-      value: 10
+    - target: {fileID: 6076572644192758667, guid: e025cd97e62bdd44aaeb0a1b2c3f8c81,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e025cd97e62bdd44aaeb0a1b2c3f8c81, type: 3}

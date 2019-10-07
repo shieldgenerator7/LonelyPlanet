@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
@@ -17,11 +18,22 @@ public class MenuManager : MonoBehaviour
         instance = this;
 
         //Check to make sure game scene is loaded
+        Scene playScene = SceneManager.GetSceneByName("PlayScene");
+        if (!playScene.isLoaded)
+        {
+            SceneManager.LoadScene("PlayScene", LoadSceneMode.Additive);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void playGame()
+    {
+        GameManager.playGame();
+        SceneManager.UnloadSceneAsync(0);
     }
 }
