@@ -139,12 +139,13 @@ public class PlanetController : MonoBehaviour
                 collision.gameObject.transform.parent = transform;
                 Size += collRB2D.mass;
                 Score += (int)(collRB2D.mass * 100);
+                SpriteRenderer collSR = collision.gameObject.GetComponent<SpriteRenderer>();
+                scoreText.color = collSR.color;
                 Destroy(collRB2D);
                 if (!isInside(collision.gameObject))
                 {
                     GameManager.gameOver();
-                    collision.gameObject.GetComponent<SpriteRenderer>()
-                        .color = Color.red;
+                    collSR.color = Color.red;
                     Destroy(rb2d);
                     Destroy(this);
                 }
@@ -166,7 +167,7 @@ public class PlanetController : MonoBehaviour
     /// <returns>True for inside, False for outside</returns>
     bool isInside(GameObject newPiece)
     {
-        float radius = 
+        float radius =
             newPiece.GetComponent<CircleCollider2D>().radius
             * newPiece.transform.localScale.x;
         Vector2 outDir = newPiece.transform.position - transform.position;
