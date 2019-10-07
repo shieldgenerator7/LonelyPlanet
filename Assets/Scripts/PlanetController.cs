@@ -48,7 +48,8 @@ public class PlanetController : MonoBehaviour
         private set
         {
             multiplier = value;
-            multiplierText.text = "x" + multiplier;
+            multiplierText.text =
+                "x" + Mathf.Round(multiplier * 10) / 10;
             multiplierText.transform.parent.gameObject
                 .SetActive(multiplier > 1);
         }
@@ -138,13 +139,7 @@ public class PlanetController : MonoBehaviour
                 mc.onHit += moonHit;
                 addScore(mc.gameObject, false);
                 mc.flashMoon();
-                //Recalculate multiplier
-                float multiplier = 1;
-                foreach (MoonController moon in moons)
-                {
-                    multiplier += moon.transform.localScale.x;
-                }
-                Multiplier = multiplier;
+                recalculateMultiplier();
             }
         }
     }
@@ -239,6 +234,7 @@ public class PlanetController : MonoBehaviour
     private void moonHit(MoonController moon)
     {
         rb2d.velocity = Vector2.zero;
+        recalculateMultiplier();
         //Visual effects
         Vector2 outDir = moon.transform.position - transform.position;
         FindObjectOfType<CameraController>().ScreenShakeVector =
@@ -250,13 +246,18 @@ public class PlanetController : MonoBehaviour
     private void removeMoon(MoonController moon)
     {
         moonHit(moon);
+        moon.flashMoon();
         moons.Remove(moon);
+        recalculateMultiplier();
+    }
+
+    void recalculateMultiplier()
+    {
         //Recalculate multiplier
         float multiplier = 1;
         foreach (MoonController mc in moons)
         {
             multiplier += mc.transform.localScale.x;
-            mc.flashMoon();
         }
         Multiplier = multiplier;
     }
