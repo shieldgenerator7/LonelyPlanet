@@ -546,6 +546,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   focusTarget: {fileID: 490617576}
+  screenShakeDuration: 0.2
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0

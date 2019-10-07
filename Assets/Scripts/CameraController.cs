@@ -5,9 +5,25 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     public GameObject focusTarget;
+    public float screenShakeDuration;
+
+    private float screenShakeStartTime = -1;
+
+    private Vector3 screenShakeVector;
+    public Vector3 ScreenShakeVector
+    {
+        get => (screenShakeStartTime > 0
+            && Time.time < screenShakeStartTime + screenShakeDuration)
+            ? screenShakeVector
+            : Vector3.zero;
+        set
+        {
+            screenShakeVector = value;
+            screenShakeStartTime = Time.time;
+        }
+    }
 
     private Rigidbody2D focusRB2D;
-    private Vector2 savedVecolity = Vector2.zero;
 
     // Start is called before the first frame update
     void Start()
@@ -19,17 +35,10 @@ public class CameraController : MonoBehaviour
     void LateUpdate()
     {
         Vector3 pos = transform.position;
-        if (false && savedVecolity != focusRB2D.velocity)
-        {
-            savedVecolity = focusRB2D.velocity;
-            pos = Vector2.MoveTowards(pos, focusTarget.transform.position, Time.deltaTime * focusRB2D.velocity.magnitude * 0.99f);
-            
-        }
-        else
-        {
-            pos = focusTarget.transform.position;
-        }
+        pos = focusTarget.transform.position + ScreenShakeVector;
         pos.z = transform.position.z;
         transform.position = pos;
+        //Screen Shake Updating
+        screenShakeVector *= -1;
     }
 }

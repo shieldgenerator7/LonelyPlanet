@@ -192,6 +192,12 @@ public class PlanetController : MonoBehaviour
             Destroy(rb2d);
             Destroy(this);
         }
+        //Visual Effects
+        Vector2 outDir = asteroid.transform.position - transform.position;
+        FindObjectOfType<CameraController>().ScreenShakeVector = 
+            outDir.normalized 
+            * 0.05f
+            *asteroid.transform.localScale.x;
     }
 
     private void removeMoon(MoonController moon)
