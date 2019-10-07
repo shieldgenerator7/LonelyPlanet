@@ -218,6 +218,12 @@ public class PlanetController : MonoBehaviour
     {
         moons.Remove(moon);
         rb2d.velocity = Vector2.zero;
+        //Visual effects
+        Vector2 outDir = moon.transform.position - transform.position;
+        FindObjectOfType<CameraController>().ScreenShakeVector =
+            outDir.normalized
+            * 0.1f
+            * transform.localScale.x;
     }
 
     private void addScore(GameObject rock, bool applyMoonBonus = true)
