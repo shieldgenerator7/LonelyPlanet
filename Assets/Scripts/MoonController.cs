@@ -25,11 +25,13 @@ public class MoonController : MonoBehaviour
     }
 
     private Rigidbody2D rb2d;
+    private ParticleSystem particleSystem;
 
     // Start is called before the first frame update
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
+        particleSystem = GetComponent<ParticleSystem>();
     }
 
     // Update is called once per frame
@@ -65,7 +67,7 @@ public class MoonController : MonoBehaviour
                 collidingObject.transform.localScale.adjustVector(-moonSize);
             if (transform.localScale.x <= 0)
             {
-                Destroy(gameObject);
+                destroyMoon();
             }
             if (collidingObject.transform.localScale.x <= 0)
             {
@@ -82,4 +84,17 @@ public class MoonController : MonoBehaviour
             }
         }
     }
+
+    public void flashMoon()
+    {
+        particleSystem.Play();
+    }
+
+    private void destroyMoon()
+    {
+        onDestroyed?.Invoke(this);
+        Destroy(gameObject);
+    }
+    public delegate void OnDestroyed(MoonController moon);
+    public OnDestroyed onDestroyed;
 }

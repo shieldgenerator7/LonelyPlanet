@@ -19,6 +19,7 @@ public class PlanetController : MonoBehaviour
     public TextMeshProUGUI scoreText;
 
     private Rigidbody2D rb2d;
+    private List<MoonController> moons = new List<MoonController>();
 
     // Start is called before the first frame update
     void Start()
@@ -103,6 +104,11 @@ public class PlanetController : MonoBehaviour
         {
             mc.Planet = this;
             mc.transform.parent = transform;
+            mc.onDestroyed += removeMoon;
+            if (!moons.Contains(mc))
+            {
+                moons.Add(mc);
+            }
         }
     }
 
@@ -136,19 +142,7 @@ public class PlanetController : MonoBehaviour
                 || collRB2D.transform.position.z >= timeToGlue)
             {
                 //Glue the object
-                collision.gameObject.transform.parent = transform;
-                Size += collRB2D.mass;
-                Score += (int)(collRB2D.mass * 100);
-                SpriteRenderer collSR = collision.gameObject.GetComponent<SpriteRenderer>();
-                scoreText.color = collSR.color;
-                Destroy(collRB2D);
-                if (!isInside(collision.gameObject))
-                {
-                    GameManager.gameOver();
-                    collSR.color = Color.red;
-                    Destroy(rb2d);
-                    Destroy(this);
-                }
+                glue(collision.gameObject);
             }
             else
             {
@@ -176,5 +170,39 @@ public class PlanetController : MonoBehaviour
             return true;//it is inside
         }
         return false;//it is outside
+    }
+
+    private void glue(GameObject asteroid)
+    {
+        Rigidbody2D collRB2D = asteroid.GetComponent<Rigidbody2D>();
+        SpriteRenderer collSR = asteroid.GetComponent<SpriteRenderer>();
+        asteroid.transform.parent = transform;
+        Size += collRB2D.mass;
+        //Score
+        float scoreAddend = collRB2D.mass * 100;
+        float multiplier = 1;
+        foreach (MoonController moon in moons)
+        {
+            multiplier += moon.transform.localScale.x;
+            moon.flashMoon();
+        }
+        scoreAddend *= multiplier;
+        Score += Mathf.CeilToInt(scoreAddend);
+        scoreText.color = collSR.color;
+        //Finalize asteroid
+        Destroy(collRB2D);
+        //Detect game over condition
+        if (!isInside(asteroid))
+        {
+            GameManager.gameOver();
+            collSR.color = Color.red;
+            Destroy(rb2d);
+            Destroy(this);
+        }
+    }
+
+    private void removeMoon(MoonController moon)
+    {
+        moons.Remove(moon);
     }
 }
