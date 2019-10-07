@@ -92,7 +92,18 @@ public class MoonController : MonoBehaviour
 
     private void destroyMoon()
     {
+        //Visual effects
+        if (Planet)
+        {
+            Vector2 outDir = transform.position - Planet.transform.position;
+            FindObjectOfType<CameraController>().ScreenShakeVector =
+                outDir.normalized
+                * 0.1f
+                * transform.localScale.x;
+        }
+        //Call the delegate
         onDestroyed?.Invoke(this);
+        //Actually destroy this moon
         Destroy(gameObject);
     }
     public delegate void OnDestroyed(MoonController moon);

@@ -193,6 +193,7 @@ public class PlanetController : MonoBehaviour
             Destroy(this);
         }
         //Visual Effects
+        asteroid.GetComponent<ParticleSystem>().Play();
         Vector2 outDir = asteroid.transform.position - transform.position;
         FindObjectOfType<CameraController>().ScreenShakeVector = 
             outDir.normalized 
