@@ -12,6 +12,7 @@ public class ItemSpawner : MonoBehaviour
     public List<GameObject> spawnPrefabs;
     public ColorPalette colorPalette;
     public SpritePalette spritePalette;
+    public float initialSpeed = 1;
     public float sizeMultiplier = 1;
 
     private float lastSpawnTime = 0;
@@ -47,7 +48,15 @@ public class ItemSpawner : MonoBehaviour
             newSR.sprite = spritePalette.RandomSprite;
             //Size
             newThing.transform.localScale *= sizeMultiplier;
-            newThing.GetComponent<Rigidbody2D>().mass *= sizeMultiplier;
+            Rigidbody2D newRB2D = newThing.GetComponent<Rigidbody2D>();
+            newRB2D.mass *= sizeMultiplier;
+            //Initial Velocity
+            Vector3 savedUp = newThing.transform.up;
+            Vector3 eulers = newThing.transform.eulerAngles;
+            eulers.z = Random.Range(0, 360.0f);
+            newThing.transform.eulerAngles = eulers;
+            newRB2D.velocity = newThing.transform.up.normalized * initialSpeed;
+            newThing.transform.up = savedUp;
             //
             itemsSpawned++;
         }
