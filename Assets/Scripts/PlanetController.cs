@@ -78,6 +78,19 @@ public class PlanetController : MonoBehaviour
         //Get inputs
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
+        //Check mouse + touch inputs
+        if (horizontal == 0 && vertical == 0
+            && (Input.GetMouseButton(0) || Input.touchCount > 0))
+        {
+            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 dir = mousePos - (Vector2)transform.position;
+            if (dir.magnitude > 1)
+            {
+                dir.Normalize();
+            }
+            horizontal = dir.x;
+            vertical = dir.y;
+        }
         //Give bonus when going in the opposite direction
         float bonus = 1;
         if (Mathf.Sign(horizontal) != Mathf.Sign(rb2d.velocity.x))
@@ -195,10 +208,10 @@ public class PlanetController : MonoBehaviour
         //Visual Effects
         asteroid.GetComponent<ParticleSystem>().Play();
         Vector2 outDir = asteroid.transform.position - transform.position;
-        FindObjectOfType<CameraController>().ScreenShakeVector = 
-            outDir.normalized 
+        FindObjectOfType<CameraController>().ScreenShakeVector =
+            outDir.normalized
             * 0.05f
-            *asteroid.transform.localScale.x;
+            * asteroid.transform.localScale.x;
     }
 
     private void removeMoon(MoonController moon)
