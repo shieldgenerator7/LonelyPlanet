@@ -654,15 +654,9 @@ MonoBehaviour:
   maxRadiusFromCenter: 100
   spawnCircular: 0
   spawnPrefabs:
-  - {fileID: 7340711610184056803, guid: 92459a14bc1c0a940a7db42da9bd64eb, type: 3}
-  - {fileID: 4192461446933157231, guid: 1ea31e468a10c4047be5f04539d14e33, type: 3}
-  - {fileID: 1978462449424290022, guid: ed055559b3964784d82f3e61945afa85, type: 3}
-  - {fileID: 2348305482843118200, guid: 4dc7ebb827c057042919436102eb1e5e, type: 3}
-  - {fileID: 6207863585798777486, guid: 47f96ba34d421124b94dd647c886f1db, type: 3}
-  - {fileID: 4239288611212652749, guid: adf6bb1db4b7bc148ab5ac7d70cb54a9, type: 3}
   - {fileID: 6596616424804694360, guid: 24c1efff380d36e42989113eae435a28, type: 3}
-  - {fileID: 5005606158849976892, guid: b7bf007d753b25241b89a152e6082f67, type: 3}
   colorPalette: {fileID: 11400000, guid: 1c3ecdd02d18cf8488b3ba846b25b3aa, type: 2}
+  spritePalette: {fileID: 11400000, guid: e53212fb700a326499e86f3b53aac2ad, type: 2}
   sizeMultiplier: 1.5
   itemsSpawned: 0
 --- !u!114 &863737658
@@ -682,15 +676,9 @@ MonoBehaviour:
   maxRadiusFromCenter: 100
   spawnCircular: 0
   spawnPrefabs:
-  - {fileID: 7340711610184056803, guid: 92459a14bc1c0a940a7db42da9bd64eb, type: 3}
-  - {fileID: 4192461446933157231, guid: 1ea31e468a10c4047be5f04539d14e33, type: 3}
-  - {fileID: 1978462449424290022, guid: ed055559b3964784d82f3e61945afa85, type: 3}
-  - {fileID: 2348305482843118200, guid: 4dc7ebb827c057042919436102eb1e5e, type: 3}
-  - {fileID: 6207863585798777486, guid: 47f96ba34d421124b94dd647c886f1db, type: 3}
-  - {fileID: 4239288611212652749, guid: adf6bb1db4b7bc148ab5ac7d70cb54a9, type: 3}
   - {fileID: 6596616424804694360, guid: 24c1efff380d36e42989113eae435a28, type: 3}
-  - {fileID: 5005606158849976892, guid: b7bf007d753b25241b89a152e6082f67, type: 3}
   colorPalette: {fileID: 11400000, guid: 1c3ecdd02d18cf8488b3ba846b25b3aa, type: 2}
+  spritePalette: {fileID: 11400000, guid: e53212fb700a326499e86f3b53aac2ad, type: 2}
   sizeMultiplier: 1.5
   itemsSpawned: 0
 --- !u!114 &863737659
@@ -711,12 +699,8 @@ MonoBehaviour:
   spawnCircular: 0
   spawnPrefabs:
   - {fileID: 7340711610184056803, guid: d61a300ecd4f4c8499b12ce7f9fa5442, type: 3}
-  - {fileID: 4192461446933157231, guid: 96c7309b279a62841a5e40bb65af8e8b, type: 3}
-  - {fileID: 1978462449424290022, guid: b2ee3081ed67c3a40bf6919977930058, type: 3}
-  - {fileID: 2348305482843118200, guid: 364e612477c0217469c2ba128d67c10c, type: 3}
-  - {fileID: 6207863585798777486, guid: c4ca61e4093677c4191d3ef0a81fb1c5, type: 3}
-  - {fileID: 4239288611212652749, guid: 9bb61a3dbeb0f044d89fb3a17b60682d, type: 3}
   colorPalette: {fileID: 11400000, guid: 97e2312e071fbc44891f355f2c0c700a, type: 2}
+  spritePalette: {fileID: 11400000, guid: 90ae8d37d5aa56c4d95de9ccbe8624af, type: 2}
   sizeMultiplier: 1.5
   itemsSpawned: 0
 --- !u!4 &863737660
@@ -5670,12 +5654,8 @@ MonoBehaviour:
   spawnCircular: 0
   spawnPrefabs:
   - {fileID: 7340711610184056803, guid: d61a300ecd4f4c8499b12ce7f9fa5442, type: 3}
-  - {fileID: 4192461446933157231, guid: 96c7309b279a62841a5e40bb65af8e8b, type: 3}
-  - {fileID: 1978462449424290022, guid: b2ee3081ed67c3a40bf6919977930058, type: 3}
-  - {fileID: 2348305482843118200, guid: 364e612477c0217469c2ba128d67c10c, type: 3}
-  - {fileID: 6207863585798777486, guid: c4ca61e4093677c4191d3ef0a81fb1c5, type: 3}
-  - {fileID: 4239288611212652749, guid: 9bb61a3dbeb0f044d89fb3a17b60682d, type: 3}
   colorPalette: {fileID: 11400000, guid: 97e2312e071fbc44891f355f2c0c700a, type: 2}
+  spritePalette: {fileID: 11400000, guid: 90ae8d37d5aa56c4d95de9ccbe8624af, type: 2}
   sizeMultiplier: 1
   itemsSpawned: 0
 --- !u!114 &1653148484
@@ -5695,15 +5675,9 @@ MonoBehaviour:
   maxRadiusFromCenter: 100
   spawnCircular: 0
   spawnPrefabs:
-  - {fileID: 7340711610184056803, guid: 92459a14bc1c0a940a7db42da9bd64eb, type: 3}
-  - {fileID: 4192461446933157231, guid: 1ea31e468a10c4047be5f04539d14e33, type: 3}
-  - {fileID: 1978462449424290022, guid: ed055559b3964784d82f3e61945afa85, type: 3}
-  - {fileID: 2348305482843118200, guid: 4dc7ebb827c057042919436102eb1e5e, type: 3}
-  - {fileID: 6207863585798777486, guid: 47f96ba34d421124b94dd647c886f1db, type: 3}
-  - {fileID: 4239288611212652749, guid: adf6bb1db4b7bc148ab5ac7d70cb54a9, type: 3}
   - {fileID: 6596616424804694360, guid: 24c1efff380d36e42989113eae435a28, type: 3}
-  - {fileID: 5005606158849976892, guid: b7bf007d753b25241b89a152e6082f67, type: 3}
   colorPalette: {fileID: 11400000, guid: 1c3ecdd02d18cf8488b3ba846b25b3aa, type: 2}
+  spritePalette: {fileID: 11400000, guid: e53212fb700a326499e86f3b53aac2ad, type: 2}
   sizeMultiplier: 1
   itemsSpawned: 0
 --- !u!114 &1653148485
@@ -5723,15 +5697,9 @@ MonoBehaviour:
   maxRadiusFromCenter: 50
   spawnCircular: 0
   spawnPrefabs:
-  - {fileID: 7340711610184056803, guid: 92459a14bc1c0a940a7db42da9bd64eb, type: 3}
-  - {fileID: 4192461446933157231, guid: 1ea31e468a10c4047be5f04539d14e33, type: 3}
-  - {fileID: 1978462449424290022, guid: ed055559b3964784d82f3e61945afa85, type: 3}
-  - {fileID: 2348305482843118200, guid: 4dc7ebb827c057042919436102eb1e5e, type: 3}
-  - {fileID: 6207863585798777486, guid: 47f96ba34d421124b94dd647c886f1db, type: 3}
-  - {fileID: 4239288611212652749, guid: adf6bb1db4b7bc148ab5ac7d70cb54a9, type: 3}
   - {fileID: 6596616424804694360, guid: 24c1efff380d36e42989113eae435a28, type: 3}
-  - {fileID: 5005606158849976892, guid: b7bf007d753b25241b89a152e6082f67, type: 3}
   colorPalette: {fileID: 11400000, guid: 1c3ecdd02d18cf8488b3ba846b25b3aa, type: 2}
+  spritePalette: {fileID: 11400000, guid: e53212fb700a326499e86f3b53aac2ad, type: 2}
   sizeMultiplier: 1
   itemsSpawned: 0
 --- !u!4 &1826872327
