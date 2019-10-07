@@ -69,6 +69,10 @@ public class MoonController : MonoBehaviour
             {
                 destroyMoon();
             }
+            else
+            {
+                onHit?.Invoke(this);
+            }
             if (collidingObject.transform.localScale.x <= 0)
             {
                 Destroy(collidingObject);
@@ -99,4 +103,8 @@ public class MoonController : MonoBehaviour
     }
     public delegate void OnDestroyed(MoonController moon);
     public OnDestroyed onDestroyed;
+
+    public delegate void OnHit(MoonController moon);
+    public OnHit onHit;
+
 }

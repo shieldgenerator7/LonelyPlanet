@@ -121,6 +121,7 @@ public class PlanetController : MonoBehaviour
                 mc.Planet = this;
                 mc.transform.parent = transform;
                 mc.onDestroyed += removeMoon;
+                mc.onHit += moonHit;
                 addScore(mc.gameObject, false);
                 mc.flashMoon();
             }
@@ -214,9 +215,8 @@ public class PlanetController : MonoBehaviour
             * asteroid.transform.localScale.x;
     }
 
-    private void removeMoon(MoonController moon)
+    private void moonHit(MoonController moon)
     {
-        moons.Remove(moon);
         rb2d.velocity = Vector2.zero;
         //Visual effects
         Vector2 outDir = moon.transform.position - transform.position;
@@ -224,6 +224,12 @@ public class PlanetController : MonoBehaviour
             outDir.normalized
             * 0.1f
             * transform.localScale.x;
+    }
+
+    private void removeMoon(MoonController moon)
+    {
+        moonHit(moon);
+        moons.Remove(moon);
     }
 
     private void addScore(GameObject rock, bool applyMoonBonus = true)
