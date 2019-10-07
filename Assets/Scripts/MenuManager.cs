@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
-
+    public GameObject creditsPanel;
 
     private static MenuManager instance;
     // Start is called before the first frame update
@@ -35,6 +35,11 @@ public class MenuManager : MonoBehaviour
     {
         GameManager.playGame();
         SceneManager.UnloadSceneAsync(0);
+    }
+
+    public void toggleCredits()
+    {
+        creditsPanel.SetActive(!creditsPanel.activeSelf);
     }
 
     public void exitGame()
