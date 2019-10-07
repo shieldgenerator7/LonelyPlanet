@@ -217,6 +217,7 @@ public class PlanetController : MonoBehaviour
     private void removeMoon(MoonController moon)
     {
         moons.Remove(moon);
+        rb2d.velocity = Vector2.zero;
     }
 
     private void addScore(GameObject rock, bool applyMoonBonus = true)
