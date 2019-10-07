@@ -14,6 +14,8 @@ public class ItemSpawner : MonoBehaviour
     public SpritePalette spritePalette;
     public float initialSpeed = 1;
     public float sizeMultiplier = 1;
+    public bool sizeUpWithPlayerSize = false;
+    public float scaleMultiplier = 1;
 
     private float lastSpawnTime = 0;
     [SerializeField]
@@ -59,6 +61,12 @@ public class ItemSpawner : MonoBehaviour
             newThing.transform.up = savedUp;
             //
             itemsSpawned++;
+            //
+            if (sizeUpWithPlayerSize)
+            {
+                PlanetController pc = FindObjectOfType<PlanetController>();
+                sizeMultiplier = scaleMultiplier * pc.Size / 700;
+            }
         }
         if (maxSpawnLimit > 0 && itemsSpawned >= maxSpawnLimit)
         {
