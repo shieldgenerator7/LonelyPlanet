@@ -234,7 +234,9 @@ MonoBehaviour:
   moveSpeed: 3
   gravityStrength: 5
   timeToGlue: 0.2
+  rangeDivider: 25
   gravityColliderObject: {fileID: 1732258327}
+  scoreText: {fileID: 0}
   size: 1000
 --- !u!58 &6205372773944165921
 CircleCollider2D:
